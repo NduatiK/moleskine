@@ -1,5 +1,5 @@
-# my new project
-> 🌳  built with [elm-spa](https://elm-spa.dev)
+# ArtCulture
+![Screenshot](./reference.webp)
 
 ## dependencies
 
