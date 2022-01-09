@@ -207,20 +207,18 @@ background =
                 [ centerY
                 , centerX
                 , width (px 450)
-
-                -- , Background.gradient
-                --     { angle = 0
-                --     , steps = [ gray 0.3, gray 0.2 ]
-                --     }
+                , height (px 587)
+                , Background.gradient
+                    { angle = 0
+                    , steps = [ gray 0.3, gray 0.2 ]
+                    }
                 , Border.rounded 450
                 , clip
                 ]
-                (image
-                    [ width (px 450)
-
-                    -- , height (px 650)
-                    ]
-                    { src = "sculpture.png", description = "A sculture of a roman emperor" }
+                (image [ width (px 450) ]
+                    { src = "sculpture.png"
+                    , description = "A sculture of a roman emperor"
+                    }
                 )
     in
     el
