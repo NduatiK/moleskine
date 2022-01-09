@@ -1,4 +1,4 @@
-module Pages.Home_ exposing (view)
+module Pages.Artculture.Home_ exposing (view)
 
 import Element exposing (..)
 import Element.Background as Background
