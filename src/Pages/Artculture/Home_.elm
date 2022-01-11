@@ -32,6 +32,8 @@ view =
                     (row
                         [ centerY
                         , centerX
+                        , moveDown 50
+                        , moveRight 10
 
                         -- , moveRight 30
                         , spacing 400
