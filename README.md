@@ -1,7 +1,7 @@
-# Moleskin
-[https://nduatik.github.io/moleskin/](https://nduatik.github.io/moleskin/)
+# Moleskine
+[https://nduatik.github.io/moleskine/](https://nduatik.github.io/moleskine/)
 
-Design by [Tomasz Mazurczak](https://dribbble.com/shots/15668609-Sculpture-Web-concept)
+Design by [Phil Goodwin ◒](https://dribbble.com/shots/14786413-Moleskine-Product-Page-Concept)
 
 ![Screenshot](./reference.webp)
 
@@ -17,6 +17,11 @@ npm install -g elm elm-spa
 
 ```bash
 elm-spa server  # starts this app at http:/localhost:1234
+```
+
+Create a link to docs called public
+```
+mklink /J public docs 
 ```
 
 ### other commands
