@@ -10,10 +10,12 @@ import Gen.Params.Moleskine exposing (Params)
 import Html
 import Html.Attributes exposing (class, id, style)
 import Page
+import Process
 import Request
 import Shared
 import Svg
 import Svg.Attributes as SvgA
+import Task
 import Time
 import View exposing (View)
 
@@ -35,6 +37,8 @@ page shared req =
 type alias Model =
     { selectedColor : Color
     , selectedRuling : Ruling
+    , loopingRulings : Bool
+    , lastRuling : Maybe Ruling
     , offset : { currentIndex : Int, percent : Float }
     }
 
@@ -50,11 +54,18 @@ images =
 init : ( Model, Cmd Msg )
 init =
     ( { selectedColor = Black
+      , loopingRulings = True
       , selectedRuling = Ruled
+      , lastRuling = Nothing
       , offset = { currentIndex = 0, percent = 0.4 }
       }
-    , Cmd.none
+    , switchRulingCmd
     )
+
+
+switchRulingCmd =
+    Process.sleep 800
+        |> Task.attempt (\_ -> NextRuling)
 
 
 
@@ -65,6 +76,7 @@ type Msg
     = Tick
     | SelectRuling Ruling
     | SelectColor Color
+    | NextRuling
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -94,6 +106,18 @@ update msg model =
             ( { model | selectedColor = color }
             , Cmd.none
             )
+
+        NextRuling ->
+            if model.loopingRulings && model.lastRuling /= Just Dot then
+                ( { model
+                    | lastRuling = Just model.selectedRuling
+                    , selectedRuling = nextRuling (Maybe.withDefault Dot model.lastRuling)
+                  }
+                , switchRulingCmd
+                )
+
+            else
+                ( { model | loopingRulings = False }, Cmd.none )
 
 
 
@@ -392,6 +416,21 @@ type Ruling
     | Ruled
     | Square
     | Plain
+
+
+nextRuling ruling =
+    case ruling of
+        Dot ->
+            Ruled
+
+        Ruled ->
+            Square
+
+        Square ->
+            Plain
+
+        Plain ->
+            Dot
 
 
 rulingToText ruling =
