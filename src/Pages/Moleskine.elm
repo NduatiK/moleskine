@@ -819,7 +819,7 @@ navbar =
                 (text "Notebooks")
             , text "Pens & Pencils"
             , text "Bags"
-            , text "Accessories"
+        --    , text "Accessories"
             ]
         , row
             [ alignRight
